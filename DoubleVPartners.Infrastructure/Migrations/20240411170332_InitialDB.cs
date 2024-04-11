@@ -79,6 +79,11 @@ namespace DoubleVPartners.Infrastructure.Migrations
                     { 42, "Tipo de documento extranjero" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "Id", "FechaCreacion", "Pass", "Usuario" },
+                values: new object[] { 1, new DateTime(2024, 4, 11, 12, 3, 32, 672, DateTimeKind.Local).AddTicks(796), "admin123", "admin@correo.com" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Personas_IdTipoIdentificacion",
                 table: "Personas",

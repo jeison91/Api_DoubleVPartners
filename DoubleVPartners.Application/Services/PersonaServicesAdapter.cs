@@ -23,8 +23,8 @@ namespace DoubleVPartners.Application.Services
 
         public async Task CreatePerson(PersonaRequestDTO personaRequest)
         {
-            var alquilerModel = personaRequest.MapToModel<PersonaModel>();
-            await _personaServicesPort.CreatePerson(alquilerModel);
+            var personaModel = personaRequest.MapToModel<PersonaModel>();
+            await _personaServicesPort.CreatePerson(personaModel);
         }
 
         public async Task<List<PersonaResponseDTO>> ListPerson()

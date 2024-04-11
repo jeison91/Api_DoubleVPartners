@@ -42,6 +42,10 @@ namespace DoubleVPartners.Infrastructure
                 new TipoIdentificacionEntity { Id = 41, Descripcion = "Pasaporte" },
                 new TipoIdentificacionEntity { Id = 42, Descripcion = "Tipo de documento extranjero" }
             );
+
+            modelBuilder.Entity<UsuarioEntity>().HasData(
+                new UsuarioEntity { Id = 1, Usuario = "admin@correo.com", Pass = "admin123", FechaCreacion = DateTime.Now }
+            );
         }
 
         public DbSet<TipoIdentificacionEntity> TipoIdentificaciones { get; set; }

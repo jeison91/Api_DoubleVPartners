@@ -30,13 +30,12 @@ namespace DoubleVPartners.Infrastructure.Repository
 
         public async Task<UsuarioModel> ValidateLoginAsync(LoginModel loginModel)
         {
-            var userEntity = await _dBContext.Usuarios.Where(u => u.Usuario == loginModel.Usuario && u.Pass == loginModel.Pass).FirstOrDefaultAsync();
-            return userEntity.MapToEntity<UsuarioModel>();
+            return (await _dBContext.Usuarios.Where(u => u.Usuario.ToLower() == loginModel.Usuario.ToLower() && u.Pass == loginModel.Pass).FirstOrDefaultAsync()).MapToEntity<UsuarioModel>();
         }
 
         public async Task<bool> ValidatUsereAsync(string Usuario)
         {
-            return await _dBContext.Usuarios.Where(u => u.Usuario == Usuario).FirstOrDefaultAsync() == null;
+            return await _dBContext.Usuarios.Where(u => u.Usuario.ToLower() == Usuario.ToLower()).FirstOrDefaultAsync() == null;
         }
     }
 }

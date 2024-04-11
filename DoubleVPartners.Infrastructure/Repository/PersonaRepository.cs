@@ -30,13 +30,12 @@ namespace DoubleVPartners.Infrastructure.Repository
 
         public async Task<List<PersonaModel>> ListPersonAsync()
         {
-            return (await _dBContext.Personas.Include(p=> p.tipoIdentificacion).ToListAsync()).MapToEntity<List<PersonaModel>>();
+            return (await _dBContext.Personas.Include(p => p.tipoIdentificacion).ToListAsync()).MapToEntity<List<PersonaModel>>();
         }
 
         public async Task<bool> ValidatePersonAsync(string Identificacion)
         {
-            var estado = await _dBContext.Personas.Where(p => p.Identificacion == Identificacion).FirstOrDefaultAsync() == null;
-            return estado;
+            return await _dBContext.Personas.Where(p => p.Identificacion == Identificacion).FirstOrDefaultAsync() == null;
         }
     }
 }

@@ -20,8 +20,7 @@ namespace DoubleVPartners.Infrastructure.Repository
 
         public async Task<List<TipoIdentificacionModel>> GetList()
         {
-            var sectors = (await _dBContext.TipoIdentificaciones.ToListAsync()).MapToEntity<List<TipoIdentificacionModel>>();
-            return sectors;
+            return (await _dBContext.TipoIdentificaciones.ToListAsync()).MapToEntity<List<TipoIdentificacionModel>>();
         }
     }
 }

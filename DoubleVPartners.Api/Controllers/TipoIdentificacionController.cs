@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DoubleVPartners.Api.Controllers
 {
+    /// <summary>
+    /// Endpoint de los tipos de identificación.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
@@ -14,15 +17,21 @@ namespace DoubleVPartners.Api.Controllers
     {
         private readonly ITipoIdentificacionServicesAdapter _tipoIdentificacionServicesAdapter;
 
+        /// <summary>
+        /// Constructor principal
+        /// </summary>
         public TipoIdentificacionController(ITipoIdentificacionServicesAdapter tipoIdentificacionServicesAdapter)
         {
             this._tipoIdentificacionServicesAdapter = tipoIdentificacionServicesAdapter;
         }
 
         /// <summary>
-        /// 
+        /// Se encarga de listar todos los tipos de identificación.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna una lista de los tipos de identificación.</returns>
+        /// <response code="200">Devuelve indicando que cargaron correctamente.</response>
+        /// <response code="400">Indica error con los datos o alerta.</response>
+        /// <response code="500">Devuelve alguna excepción controlada.</response>
         [HttpGet("Listar")]
         public async Task<IActionResult> Listar()
         {
@@ -35,7 +44,7 @@ namespace DoubleVPartners.Api.Controllers
                 return StatusCode(StatusCodes.Status400BadRequest, new ResponseError
                 {
                     StatusCode = StatusCodes.Status400BadRequest,
-                    Message = $"Errors: {ex.Message}"
+                    Message = ex.Message
                 });
             }
             catch (Exception ex)

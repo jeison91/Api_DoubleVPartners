@@ -157,6 +157,15 @@ namespace DoubleVPartners.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FechaCreacion = new DateTime(2024, 4, 11, 12, 3, 32, 672, DateTimeKind.Local).AddTicks(796),
+                            Pass = "admin123",
+                            Usuario = "admin@correo.com"
+                        });
                 });
 
             modelBuilder.Entity("DoubleVPartners.Infrastructure.Entities.PersonaEntity", b =>

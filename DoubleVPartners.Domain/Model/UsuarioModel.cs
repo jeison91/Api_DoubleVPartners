@@ -15,6 +15,6 @@ namespace DoubleVPartners.Domain.Model
         public int Id { get; set; }
         public string Usuario { get; set; }
         public string Pass { get; set; }
-        public DateTime FechaCreacion => DateTime.Now;
+        public DateTime FechaCreacion { get; set; } = DateTime.Now;
     }
 }

@@ -17,7 +17,7 @@ namespace DoubleVPartners.Domain.Model
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public string Email { get; set; }
-        public DateTime FechaCreacion => DateTime.Now;
+        public DateTime FechaCreacion { get; set; } = DateTime.Now;
         public string CalculoIdentificador => Identificacion.Trim() + " " + IdTipoIdentificacion;
         public string NombreCompleto => $"{Nombres.Trim()} {Apellidos.Trim()}";
         public TipoIdentificacionModel tipoIdentificacion { get; set; }

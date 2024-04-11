@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DoubleVPartners.Api.Controllers
 {
+    /// <summary>
+    /// Endpoint para creación y consulta de personas.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
@@ -14,16 +17,22 @@ namespace DoubleVPartners.Api.Controllers
     {
         private readonly IPersonaServicesAdapter _personaServicesAdapter;
 
+        /// <summary>
+        /// Construir principal
+        /// </summary>
         public PersonaController(IPersonaServicesAdapter personaServicesAdapter)
         {
             this._personaServicesAdapter = personaServicesAdapter;
         }
 
         /// <summary>
-        /// 
+        /// Se encarga de crear las personas.
         /// </summary>
-        /// <param name="personaRequest"></param>
+        /// <param name="personaRequest">Modelo usado para la creación de la persona</param>
         /// <returns></returns>
+        /// <response code="201">Devuelve indicando que fue creado correctamente.</response>
+        /// <response code="400">Indica error con los datos o alerta.</response>
+        /// <response code="500">Devuelve alguna excepción controlada.</response>
         [HttpPost("CrearPersona")]
         public async Task<IActionResult> CrearPersona([FromBody] PersonaRequestDTO personaRequest)
         {
@@ -37,7 +46,7 @@ namespace DoubleVPartners.Api.Controllers
                 return StatusCode(StatusCodes.Status400BadRequest, new ResponseError
                 {
                     StatusCode = StatusCodes.Status400BadRequest,
-                    Message = $"Error: {ex.Message}"
+                    Message = ex.Message
                 });
             }
             catch (Exception ex)
@@ -51,9 +60,12 @@ namespace DoubleVPartners.Api.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Se encarga de buscar y listar todos las personas.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Modelo con la lista de personas creadas.</returns>
+        /// <response code="200">Indica que se devolvió correctamente la lista.</response>
+        /// <response code="400">Indica error con los datos o alerta.</response>
+        /// <response code="500">Devuelve alguna excepción controlada.</response>
         [HttpGet("ListarPersona")]
         public async Task<IActionResult> ListarPersona()
         {
@@ -66,7 +78,7 @@ namespace DoubleVPartners.Api.Controllers
                 return StatusCode(StatusCodes.Status400BadRequest, new ResponseError
                 {
                     StatusCode = StatusCodes.Status400BadRequest,
-                    Message = $"Error: {ex.Message}"
+                    Message = ex.Message
                 });
             }
             catch (Exception ex)
